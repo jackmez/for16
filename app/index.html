@@ -13,20 +13,24 @@
     <!-- build:js scripts/modernizr.js -->
     <script src="scripts/modernizr.js"></script>
     <!-- endbuild -->
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-html-shader@0.2.0/dist/aframe-html-shader.min.js"></script>
+
   </head>
   <body>
-    <!--[if IE]>
-      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-    <div class="hero-unit">
-      <h1>'Allo, 'Allo!</h1>
-      <p>You now have</p>
-      <ul>
-        <li>HTML5 Boilerplate</li>
-        <li>Sass</li>
-        <li>Modernizr</li>
-      </ul>
+
+    <a-scene>
+      <!-- <a-entity geometry="primitive: box" material="shader: html; target: #htmlElement" position="1 1 0"></a-entity> -->
+      <a-plane color="#fff" height="30" width="30" position="0 0 -30" material="shader: html; target: #htmlElement"></a-plane>
+
+    </a-scene>
+
+    <div style="width: 100%; height: 100%; position: fixed; left: 0; top: 0; z-index: -1; overflow: hidden">
+      <div id="htmlElement">
+        <iframe src="https://open.spotify.com/embed/playlist/51er6NP8zvPQNsTj1fa2M1"></iframe>
+      </div>
     </div>
+
     <!-- build:js scripts/vendor.js -->
     <!-- endbuild -->
     <!-- build:js scripts/main.js -->
