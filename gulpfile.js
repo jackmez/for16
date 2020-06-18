@@ -1,9 +1,6 @@
-// generated on 2020-06-17 using generator-webapp 4.0.0-8
+// generated on 2020-04-02 using generator-webapp 4.0.0-8
 const { src, dest, watch, series, parallel, lastRun } = require('gulp');
 const gulpLoadPlugins = require('gulp-load-plugins');
-const fs = require('fs');
-const mkdirp = require('mkdirp');
-const Modernizr = require('modernizr');
 const browserSync = require('browser-sync');
 const del = require('del');
 const autoprefixer = require('autoprefixer');
@@ -50,34 +47,6 @@ function scripts() {
     .pipe(server.reload({stream: true}));
 };
 
-async function modernizr() {
-  const readConfig = () => new Promise((resolve, reject) => {
-    fs.readFile(`${__dirname}/modernizr.json`, 'utf8', (err, data) => {
-      if (err) reject(err);
-      resolve(JSON.parse(data));
-    })
-  })
-  const createDir = () => new Promise((resolve, reject) => {
-    mkdirp(`${__dirname}/.tmp/scripts`, err => {
-      if (err) reject(err);
-      resolve();
-    })
-  });
-  const generateScript = config => new Promise((resolve, reject) => {
-    Modernizr.build(config, content => {
-      fs.writeFile(`${__dirname}/.tmp/scripts/modernizr.js`, content, err => {
-        if (err) reject(err);
-        resolve(content);
-      });
-    })
-  });
-
-  const [config] = await Promise.all([
-    readConfig(),
-    createDir()
-  ]);
-  await generateScript(config);
-}
 
 const lintBase = (files, options) => {
   return src(files)
@@ -118,10 +87,20 @@ function images() {
     .pipe(dest('dist/images'));
 };
 
-function fonts() {
-  return src('app/fonts/**/*.{eot,svg,ttf,woff,woff2}')
-    .pipe($.if(!isProd, dest('.tmp/fonts'), dest('dist/fonts')));
+function models() {
+  return src('app/models/**/*', { since: lastRun(models) })
+    .pipe(dest('dist/models'));
 };
+
+function fonts() {
+  return src('app/fonts/**/*', { since: lastRun(fonts) })
+    .pipe(dest('dist/fonts'));
+};
+
+// function fonts() {
+//   return src('app/fonts/**/*.{eot,svg,ttf,woff,woff2}')
+//     .pipe($.if(!isProd, dest('.tmp/fonts'), dest('dist/fonts')));
+// };
 
 function extras() {
   return src([
@@ -145,8 +124,9 @@ const build = series(
   clean,
   parallel(
     lint,
-    series(parallel(styles, scripts, modernizr), html),
+    series(parallel(styles, scripts), html),
     images,
+    models,
     fonts,
     extras
   ),
@@ -168,12 +148,12 @@ function startAppServer() {
   watch([
     'app/*.html',
     'app/images/**/*',
+    'app/models/**/*',
     '.tmp/fonts/**/*'
   ]).on('change', server.reload);
 
   watch('app/styles/**/*.scss', styles);
   watch('app/scripts/**/*.js', scripts);
-  watch('modernizr.json', modernizr);
   watch('app/fonts/**/*', fonts);
 }
 
@@ -211,7 +191,7 @@ function startDistServer() {
 
 let serve;
 if (isDev) {
-  serve = series(clean, parallel(styles, scripts, modernizr, fonts), startAppServer);
+  serve = series(clean, parallel(styles, scripts, fonts), startAppServer);
 } else if (isTest) {
   serve = series(clean, scripts, startTestServer);
 } else if (isProd) {
