@@ -80,3 +80,35 @@ function moveCube(randomPosition) {
 
   face[position].classList.add('showface');
 }
+
+
+
+
+
+document.onkeydown = checkKey;
+
+function checkKey(e) {
+
+  e = e || window.event;
+
+  if (e.keyCode == '38') {
+    cubespinner.classList.add('spinner');
+  } else if (e.keyCode == '40') {
+    cubespinner.classList.remove('spinner');
+  } else if (e.keyCode == '37') {
+    if (position <= 0) {
+      position = positionMax;
+    } else {
+      position--;
+    }
+    moveCube(position);
+  } else if (e.keyCode == '39') {
+    if (position >= positionMax) {
+      position = 0;
+    } else {
+      position++;
+    }
+    moveCube(position);
+  }
+
+}
