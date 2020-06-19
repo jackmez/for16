@@ -19,7 +19,7 @@
 
 .spinner{
   animation-name: spin;
-  animation-timing-function:linear !important;
+  animation-timing-function: linear !important;
   animation-duration: 15s !important;
   animation-iteration-count: forwards !important;
 }
@@ -45,7 +45,11 @@
 
  66% {
 
-   transform: rotateX(280deg) rotateY(375deg) rotateZ(279deg);
+   transform: rotateX(280deg) rotateY(235deg) rotateZ(279deg);
+ }
+
+ 83% {
+    transform: rotateX(300deg) rotateY(340deg) rotateZ(290deg);
  }
 
  83% {
