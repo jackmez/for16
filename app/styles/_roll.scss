@@ -19,8 +19,8 @@
 
 .spinner{
   animation-name: spin;
-  animation-timing-function:ease-in-out !important;
-  animation-duration: 35s !important;
+  animation-timing-function:linear !important;
+  animation-duration: 15s !important;
   animation-iteration-count: forwards !important;
 }
 
