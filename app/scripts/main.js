@@ -19,7 +19,7 @@ next.addEventListener('click', event => {
 })
 
 prev.addEventListener('click', event => {
-  if (position <= 1) {
+  if (position <= 0) {
     position = positionMax;
   } else {
     position--;
