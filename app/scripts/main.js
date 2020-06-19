@@ -7,7 +7,6 @@ let face = document.querySelectorAll('.face');
 let position = 0;
 let positionMax = 5
 
-
 moveCube(position);
 
 next.addEventListener('click', event => {
@@ -29,7 +28,6 @@ prev.addEventListener('click', event => {
 })
 
 
-
 dice.addEventListener('click', event => {
   getRandomPosition()
   next.classList.add('showButton');
@@ -38,7 +36,7 @@ dice.addEventListener('click', event => {
 })
 
 function getRandomPosition() {
-   position = Math.floor(Math.random() * (4 - 1 + 1)) + 1;
+  position = Math.floor(Math.random() * (4 - 1 + 1)) + 1;
   moveCube(position);
 }
 
