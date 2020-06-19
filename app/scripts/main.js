@@ -29,11 +29,19 @@ prev.addEventListener('click', event => {
 
 
 dice.addEventListener('click', event => {
-  getRandomPosition()
+  diceroll()
   next.classList.add('showButton');
   prev.classList.add('showButton');
-
 })
+
+function diceroll() {
+  cubespinner.classList.add('dice-roll');
+  setTimeout(function(){
+    cubespinner.classList.remove('dice-roll');
+    getRandomPosition()},
+     3000);
+
+  }
 
 function getRandomPosition() {
   position = Math.floor(Math.random() * (4 - 1 + 1)) + 1;

@@ -1,0 +1,17 @@
+.dice-roll{
+  animation-name: diceroll;
+  animation-timing-function:cubic-bezier(0.68, -0.6, 0.32, 1.6); !important;
+  animation-duration: 3s !important;
+  animation-iteration-count: 1 !important;
+}
+
+@keyframes diceroll {
+
+  0%{
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  }
+
+  100% {
+    transform: rotateX(720deg) rotateY(540deg) rotateZ(1080deg);
+  }
+}

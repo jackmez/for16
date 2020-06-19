@@ -1,4 +1,6 @@
 @import 'fonts.scss';
+@import 'roll.scss';
+
 $box-width: 35rem;
 $half-box-width: $box-width/2;
 
@@ -22,8 +24,11 @@ body {
   transform: translateY(-50%);
   font-size: 5rem;
   opacity: 0;
-  transition: all 500ms;
+  transition: all 100ms;
 }
+
+.button:hover {
+font-size:6rem }
 
 .showButton {
   opacity: 1;
@@ -79,9 +84,23 @@ h2 {
   top: -5rem;
 }
 
+h3{
+  font-weight: 200;
+  font-variation-settings: 'wght' 200;
+  margin: 0 0 1.4rem 0;
+  padding-left: 2rem;
+  font-size: 3rem;
+  line-height: 3.5rem;
+}
+
 p {
   font-size: 1.4rem;
   margin: 1.8rem 0 0.4rem 2rem;
+}
+
+.details{
+  margin: 0.5rem 0 0.1rem 2rem;
+
 }
 
 .dice {
