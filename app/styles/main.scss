@@ -2,6 +2,10 @@
 $box-width: 35rem;
 $half-box-width: $box-width/2;
 
+html{
+  font-size: 16px;
+}
+
 body {
   font-family: 'AvenirNext LT Pro','Avenir Next', sans-serif;
   background-color: #F6F4F1;
@@ -200,4 +204,23 @@ p {
 .showface {
   position: relative;
   z-index: 1000;
+}
+@media only screen and (max-width: 1160px) {
+  html {
+    font-size: 14px;
+  }
+}
+@media only screen and (max-width: 950px) {
+  html {
+    font-size: 11px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  html {
+    font-size: 10px;
+  }
+
+  .button{
+    top:85%;
+  }
 }
